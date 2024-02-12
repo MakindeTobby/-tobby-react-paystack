@@ -14,23 +14,23 @@ type Bearer = 'account' | 'subaccount';
 
 type phone = number | string;
 
-interface PaystackCustomFields {
+type PaystackCustomFields ={
   display_name: string;
   variable_name: string;
   value: any;
 }
 
-interface PaystackMetadata {
+type PaystackMetadata = {
   custom_fields: PaystackCustomFields[];
 }
 
-interface PaystackMetadata {
+type PaystackMetadata ={
   [key: string]: any;
 }
 
 export type callback = (response?: any) => void;
 
-export interface PaystackProps {
+export type PaystackProps ={
   publicKey: string;
   email: string;
   amount: number;
