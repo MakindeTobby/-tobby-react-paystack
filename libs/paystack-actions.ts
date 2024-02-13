@@ -5,19 +5,19 @@
 //   handler && handler.openIframe();
 // };
 
+
+
+
+
 type PaystackArgs<T> = Record<string, T>;
 
+type CustomWindow =  {
+  PaystackPop: <T>(arg: T) => { openIframe: () => void };
+} & Window
 
-type CustomWindow = {
-  PaystackPop: (arg: string) => void
-} & Window & typeof globalThis;
+declare var customWindow: CustomWindow;
 
-declare var customWindow : CustomWindow;
-
-export let callPaystackPop = (paystackArgs: PaystackArgs<T>): void => {
-  const handler = customWindow.PaystackPop(paystackArgs);
- handler.openIframe();
+export const callPaystackPop = <T>(paystackArgs: PaystackArgs<T>): void => {
+  const handler = customWindow.PaystackPop(JSON.stringify(paystackArgs));
+  handler.openIframe();
 };
-
-
-
